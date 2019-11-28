@@ -3,6 +3,10 @@
 // John Fish, Nov 2019
 //
 
+// README: generate an API key here: https://wrapapi.com/api/johnfish/teamtrees/treecount/0.0.1
+// it will not update without such a key
+var wrapAPIKey = "key goes in between the quotes";
+
 // Various three.js global variables
 var scene,
     camera,
@@ -11,7 +15,7 @@ var scene,
     group;
 
 // Tracking tree count
-var numTrees;
+var numTrees = 16000000;
 var curTrees = 0;
 
 // Leaf materials
@@ -33,10 +37,12 @@ function fetchTrees() {
       url: "https://wrapapi.com/use/johnfish/teamtrees/treecount/0.0.1",
       method: "POST",
       data: {
-            "wrapAPIKey": "2pV547pBOpkS31aZW9Aw84e7rGRNXcBh"
+            "wrapAPIKey": wrapAPIKey 
           }
   }).done(function(data) {
-      numTrees = data["data"]["#totalTrees"];
+      if (data.success) {
+        numTrees = data["data"]["#totalTrees"]; 
+      }
       $("#cash").text("$"+formatNumber(numTrees))
       var diff = Math.floor(numTrees / 10000) - curTrees
       if (diff > 0) {
@@ -90,7 +96,6 @@ function randomAngleTriple() {
 
 // Add n trees to scene randomly
 function growTrees(n) {
-  alert("You grew some trees");
   for (var i = 0; i < n; i++) {
     scene.add(tree(randomAngleTriple()))
   }
