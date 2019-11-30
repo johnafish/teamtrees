@@ -11,7 +11,7 @@ Changed made by snoh666:
 
 // README: generate an API key here: https://wrapapi.com/api/johnfish/teamtrees/treecount/0.0.1
 // it will not update without such a key
-const wrapAPIKey = "HOT0YjzjeiEM8RzAVS73P1W6424qOZVn";
+const wrapAPIKey = "key goes in between the quotes";
 
 // Various three.js global variables
 let scene,
