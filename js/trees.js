@@ -118,13 +118,13 @@ function growTrees(n) {
 
 function init() {
     // Update tree count regularly
-    fetchTrees()
-    setInterval(fetchTrees, 30000)
+    fetchTrees();
+    setInterval(fetchTrees, 30000);
 
     // Set up scene + renderer
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 80
+    camera.position.z = 80;
 
     renderer =  new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
