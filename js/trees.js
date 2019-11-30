@@ -11,26 +11,26 @@ Changed made by snoh666:
 
 // README: generate an API key here: https://wrapapi.com/api/johnfish/teamtrees/treecount/0.0.1
 // it will not update without such a key
-var wrapAPIKey = "key goes in between the quotes";
+const wrapAPIKey = "HOT0YjzjeiEM8RzAVS73P1W6424qOZVn";
 
 // Various three.js global variables
-var scene,
+let scene,
     camera,
     renderer,
     controls,
     group;
 
 // Tracking tree count
-var numTrees = 16000000;
-var curTrees = 0;
+let numTrees = 16000000;
+let curTrees = 0;
 
 // Leaf materials
-var leaveDarkMaterial = new THREE.MeshLambertMaterial({ color: 0x91E56E });
-var leaveLightMaterial = new THREE.MeshLambertMaterial({ color: 0xA2FF7A });
-var stemMaterial = new THREE.MeshLambertMaterial({ color: 0x7D5A4F });
-var cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+const leaveDarkMaterial = new THREE.MeshLambertMaterial({ color: 0x91E56E });
+const leaveLightMaterial = new THREE.MeshLambertMaterial({ color: 0xA2FF7A });
+const stemMaterial = new THREE.MeshLambertMaterial({ color: 0x7D5A4F });
+const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
 
-var radius = 35; // Planet radius
+const radius = 35; // Planet radius
 
 // Takes number, formats as currency... stolen from stackoverflow
 function formatNumber(num) {
