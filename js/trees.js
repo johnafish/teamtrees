@@ -78,26 +78,26 @@ function planet(r) {
 
 // Generate a simple tree, rotated with provided angles
 function tree(angles) {
-    var stem = new THREE.Mesh(cubeGeometry, stemMaterial );
+    const stem = new THREE.Mesh(cubeGeometry, stemMaterial );
     stem.position.set(0, radius + 0.75, 0 );
     stem.scale.set( 0.3, 1.5, 0.3 );
 
-    var leaveDark = new THREE.Mesh(cubeGeometry, leaveDarkMaterial );
+    const leaveDark = new THREE.Mesh(cubeGeometry, leaveDarkMaterial );
     leaveDark.position.set( 0, radius + 1.2, 0 );
     leaveDark.scale.set( 1, 2, 1 );
 
-    var leaveLight = new THREE.Mesh(cubeGeometry, leaveLightMaterial );
+    const leaveLight = new THREE.Mesh(cubeGeometry, leaveLightMaterial );
     leaveLight.position.set( 0, radius + 1.2, 0 );
     leaveLight.scale.set( 1.4, 0.5, 1.4 );
 
-    var tree = new THREE.Group();
+    const tree = new THREE.Group();
     tree.add( leaveDark );
     tree.add( leaveLight );
     tree.add( stem );
 
-    tree.rotation.set(angles[0], angles[1], angles[2])
+    tree.rotation.set(angles[0], angles[1], angles[2]);
 
-    return tree
+    return tree;
 }
 
 // Generate a random angle triple from [0, 2PI]
