@@ -3,6 +3,12 @@
 // John Fish, Nov 2019
 //
 
+/*
+Changed made by snoh666:
+  - new fetchTrees function without need of jQuery
+
+*/
+
 // README: generate an API key here: https://wrapapi.com/api/johnfish/teamtrees/treecount/0.0.1
 // it will not update without such a key
 var wrapAPIKey = "key goes in between the quotes";
@@ -32,30 +38,39 @@ function formatNumber(num) {
 }
 
 // Retrieve trees from wrapapi, update text + grow trees when appropriate
-function fetchTrees() {
-  $.ajax({
-      url: "https://wrapapi.com/use/johnfish/teamtrees/treecount/0.0.1",
-      method: "POST",
-      data: {
-            "wrapAPIKey": wrapAPIKey 
-          }
-  }).done(function(data) {
-      if (data.success) {
-        numTrees = data["data"]["#totalTrees"]; 
-      }
-      $("#cash").text("$"+formatNumber(numTrees))
-      var diff = Math.floor(numTrees / 10000) - curTrees
-      if (diff > 0) {
-        curTrees += diff
-        growTrees(diff)
-      }
+const setupTrees = (data) => {
+  if (data.success) {
+    numTrees = data.data['#totalTrees'];
+  }
+  document.getElementById('cash').innerText = `$${numTrees.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;  // Custom js (es6) funcion for formating into money
+  const diff = Math.floor(numTrees / 10000) - curTrees;
+
+  if(diff > 0) {
+    curTrees += diff;
+    growTrees(diff);
+  }
+
+}
+
+const fetchTrees = async _ => {
+
+  const response = await fetch(`https://wrapapi.com/use/snoh666/teamtrees/treecount/0.0.1?wrapAPIKey=${wrapAPIKey}`, {
+    method: 'GET'
   });
+
+  const value = await response.json();
+
+  await console.log(value);
+
+  await setupTrees(value);
+
+  return Promise.resolve();
 }
 
 // Generate a planet at (0,0,0) with specified radius
 function planet(r) {
   var groundMaterial = new THREE.MeshLambertMaterial({ color: 0x634b35});
-  var planetGeometry = new THREE.SphereGeometry(r, 100, 100); 
+  var planetGeometry = new THREE.SphereGeometry(r, 100, 100);
   var planet = new THREE.Mesh(planetGeometry, groundMaterial);
   planet.position.set(0,0,0);
   scene.add(planet)
