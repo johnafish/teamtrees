@@ -69,9 +69,9 @@ const fetchTrees = async _ => {
 
 // Generate a planet at (0,0,0) with specified radius
 function planet(r) {
-  var groundMaterial = new THREE.MeshLambertMaterial({ color: 0x634b35});
-  var planetGeometry = new THREE.SphereGeometry(r, 100, 100);
-  var planet = new THREE.Mesh(planetGeometry, groundMaterial);
+  const groundMaterial = new THREE.MeshLambertMaterial({ color: 0x634b35});
+  const planetGeometry = new THREE.SphereGeometry(r, 100, 100);
+  const planet = new THREE.Mesh(planetGeometry, groundMaterial);
   planet.position.set(0,0,0);
   scene.add(planet)
 }
